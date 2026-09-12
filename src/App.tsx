@@ -15,6 +15,7 @@ const ALL_ALGOS = Object.keys(ALGO_LABELS) as AlgoId[];
 
 export default function App() {
   const [mode, setMode] = useState<Mode>('single');
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const [playing, setPlaying] = useState(true);
   const [speed, setSpeed] = useState(1);
   const [drawer, setDrawer] = useState(false);
@@ -56,6 +57,10 @@ export default function App() {
     rebuild();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
 
   useEffect(() => {
     if (singleRef.current) singleRef.current.setAlgo(singleAlgo);
@@ -140,7 +145,7 @@ export default function App() {
   };
 
   return (
-    <div className={`app ${drawer ? 'drawer-open' : ''}`}>
+    <div className={`app ${drawer ? 'drawer-open' : ''}`} data-theme={theme}>
       <header className="topbar">
         <div className="brand">Scheduler Show</div>
         <div className="mode-toggle">
@@ -159,7 +164,39 @@ export default function App() {
             Compare
           </button>
         </div>
+        {mode === 'single' && (
+          <label className="algo-pick">
+            Algorithm
+            <select
+              className="algo-select"
+              value={singleAlgo}
+              onChange={(e) => setSingleAlgo(e.target.value as AlgoId)}
+            >
+              {ALL_ALGOS.map((id) => (
+                <option key={id} value={id}>
+                  {ALGO_LABELS[id]}
+                </option>
+              ))}
+            </select>
+          </label>
+        )}
         <div className="transport">
+          <div className="mode-toggle" title="Theme">
+            <button
+              type="button"
+              className={theme === 'light' ? 'active' : ''}
+              onClick={() => setTheme('light')}
+            >
+              Light
+            </button>
+            <button
+              type="button"
+              className={theme === 'dark' ? 'active' : ''}
+              onClick={() => setTheme('dark')}
+            >
+              Dark
+            </button>
+          </div>
           <button type="button" onClick={() => setPlaying((p) => !p)}>
             {playing ? 'Pause' : 'Play'}
           </button>
