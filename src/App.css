@@ -119,7 +119,9 @@ html, body, #root { height: 100%; margin: 0; background: var(--bg); color: var(-
 .lane-accent { font-weight: 600; color: var(--lane-accent, var(--text)); }
 .lane-chrome { display: flex; gap: 0.2rem; }
 .lane-chrome button { padding: 0.1rem 0.35rem; font-size: 0.7rem; }
-.lane-queue { display: flex; flex-wrap: wrap; gap: 2px; min-height: 16px; align-content: center; }
+.lane-queue { display: flex; flex-direction: column; gap: 2px; min-height: 16px; justify-content: center; }
+.queue-count { font-size: 0.65rem; color: var(--muted); }
+.queue-slots { display: flex; flex-wrap: wrap; gap: 2px; }
 .lane-nodes { display: flex; flex-wrap: wrap; gap: 3px; align-items: center; }
 .node-strip {
   width: 44px; height: 16px; background: #10141c; border-radius: 3px; position: relative;

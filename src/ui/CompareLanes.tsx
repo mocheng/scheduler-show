@@ -60,9 +60,14 @@ export function CompareLanes({
           const u = utils[idx]!;
           const w = waits[idx]!;
           const p = preempts[idx]!;
-          const utilHot = maxUtil - Math.min(...utils) > 0.04 && u === maxUtil;
-          const waitHot = maxWait - Math.min(...waits) > 0.3 && w === maxWait;
-          const preHot = maxPre > 0 && p === maxPre && maxPre !== Math.min(...preempts);
+          const utilSpread = maxUtil - Math.min(...utils);
+          const waitSpread = maxWait - Math.min(...waits);
+          const utilHot = utilSpread >= 0.05 && u === maxUtil;
+          const waitHot = maxWait > 0 && waitSpread >= 0.3 && w === maxWait;
+          const preHot =
+            maxPre > 0 &&
+            maxPre !== Math.min(...preempts) &&
+            p === maxPre;
           return (
             <div
               className="lane-row"
@@ -92,12 +97,15 @@ export function CompareLanes({
                 </div>
               </div>
               <div className="lane-queue">
-                {shown.map((t) => (
-                  <div key={t.id} className="q-item prio-neutral" />
-                ))}
-                {Array.from({ length: slots }, (_, i) => (
-                  <div key={`slot-${i}`} className="q-item q-slot" />
-                ))}
+                <span className="queue-count">{snap.queue.length} waiting</span>
+                <div className="queue-slots">
+                  {shown.map((t) => (
+                    <div key={t.id} className="q-item prio-neutral" />
+                  ))}
+                  {Array.from({ length: slots }, (_, i) => (
+                    <div key={`slot-${i}`} className="q-item q-slot" />
+                  ))}
+                </div>
               </div>
               <div className="lane-nodes">
                 {snap.nodes.map((n) => (
