@@ -22,7 +22,13 @@ export function ResourceBars({
           <div className="bar-row" key={key}>
             {!compact && <span className="bar-label">{label}</span>}
             <div className="bar-track">
-              <div className="bar-fill" style={{ width: `${pct * 100}%` }} />
+              <div
+                className="bar-fill"
+                style={{
+                  width: `${pct * 100}%`,
+                  opacity: 0.35 + pct * 0.65,
+                }}
+              />
             </div>
           </div>
         );
