@@ -100,7 +100,7 @@ export function CompareLanes({
                 <span className="queue-count">{snap.queue.length} waiting</span>
                 <div className="queue-slots">
                   {shown.map((t) => (
-                    <div key={t.id} className="q-item prio-neutral" />
+                    <div key={t.id} className="q-item q-filled" title={`t${t.id}`} />
                   ))}
                   {Array.from({ length: slots }, (_, i) => (
                     <div key={`slot-${i}`} className="q-item q-slot" />
