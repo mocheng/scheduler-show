@@ -97,45 +97,49 @@ html, body, #root { height: 100%; margin: 0; background: var(--bg); color: var(-
 .compare-main { flex: 1; overflow: auto; padding: 0.75rem; }
 .compare-head { display: flex; gap: 0.75rem; align-items: center; margin-bottom: 0.6rem; }
 .seed-badge {
-  font-size: 0.75rem; color: var(--muted); border: 1px solid var(--border);
-  border-radius: 999px; padding: 0.2rem 0.55rem;
+  font-size: 0.8rem; color: var(--text); border: 1px solid var(--accent);
+  border-radius: 999px; padding: 0.2rem 0.55rem; font-variant-numeric: tabular-nums;
 }
-.lane-grid { display: flex; flex-direction: column; gap: 0.35rem; }
+.seed-sub { font-size: 0.75rem; color: var(--muted); }
+.lane-grid { display: flex; flex-direction: column; gap: 0.15rem; }
 .lane-row {
   display: grid;
-  grid-template-columns: 160px 140px 1fr 200px;
-  gap: 0.5rem; align-items: center;
-  background: var(--panel); border: 1px solid var(--border); border-radius: 8px;
-  padding: 0.45rem 0.55rem; border-left: 3px solid var(--lane-accent, var(--border));
+  grid-template-columns: 150px 120px 1fr 170px;
+  gap: 0.4rem; align-items: center;
+  background: var(--panel); border: 1px solid var(--border); border-radius: 6px;
+  padding: 0.28rem 0.45rem; border-left: 3px solid var(--lane-accent, var(--border));
+  min-height: 44px;
 }
 .lane-header {
-  background: transparent; border: none; color: var(--muted); font-size: 0.7rem;
-  text-transform: uppercase; letter-spacing: 0.04em; padding-bottom: 0;
+  background: transparent; border: none; color: var(--muted); font-size: 0.65rem;
+  text-transform: uppercase; letter-spacing: 0.04em; padding: 0.1rem 0.45rem;
+  min-height: 0;
 }
 .lane-label { display: flex; flex-direction: column; gap: 0.25rem; }
 .lane-accent { font-weight: 600; color: var(--lane-accent, var(--text)); }
 .lane-chrome { display: flex; gap: 0.2rem; }
 .lane-chrome button { padding: 0.1rem 0.35rem; font-size: 0.7rem; }
-.lane-queue { display: flex; flex-wrap: wrap; gap: 2px; min-height: 18px; }
-.lane-nodes { display: flex; flex-wrap: wrap; gap: 4px; }
+.lane-queue { display: flex; flex-wrap: wrap; gap: 2px; min-height: 16px; align-content: center; }
+.lane-nodes { display: flex; flex-wrap: wrap; gap: 3px; align-items: center; }
 .node-strip {
-  width: 48px; height: 18px; background: #10141c; border-radius: 3px; position: relative;
-  overflow: hidden; border: 1px solid var(--border);
+  width: 44px; height: 16px; background: #10141c; border-radius: 3px; position: relative;
+  overflow: hidden; border: 1px solid var(--border); flex-shrink: 0;
 }
 .strip-fill { position: absolute; inset: 0 auto 0 0; background: var(--lane-accent, var(--bar)); opacity: 0.55; }
 .strip-pills { position: relative; display: flex; gap: 1px; padding: 3px; }
 .mini-pill { width: 5px; height: 10px; background: #cfd6e4; border-radius: 1px; display: inline-block; }
 .lane-metrics {
-  display: flex; flex-direction: column; gap: 0.1rem; font-size: 0.75rem; color: var(--muted);
+  display: flex; flex-direction: column; gap: 0.05rem; font-size: 0.72rem; color: var(--muted);
 }
+.metric-dim { opacity: 0.55; }
+.metric-hot { color: var(--text); font-weight: 650; opacity: 1; }
 
-.drawer-backdrop {
-  position: fixed; inset: 0; background: rgba(0,0,0,0.45); display: flex; justify-content: flex-end;
-  z-index: 20;
-}
+.app.drawer-open .single-main,
+.app.drawer-open .compare-main { margin-right: 280px; }
 .drawer {
-  width: min(360px, 100%); height: 100%; background: var(--panel); border-left: 1px solid var(--border);
-  padding: 1rem; overflow: auto;
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: 20;
+  width: 280px; background: var(--panel); border-left: 1px solid var(--border);
+  padding: 0.75rem 0.85rem; overflow: auto; box-shadow: -8px 0 24px rgba(0,0,0,0.25);
 }
 .drawer header { display: flex; justify-content: space-between; align-items: center; }
 .drawer h2 { margin: 0; font-size: 1.1rem; }

@@ -350,9 +350,9 @@ export class Simulator {
 export const DEFAULT_CONFIG: SimConfig = {
   nodeCount: 6,
   capacity: { cpu: 8, mem: 32, gpu: 1 },
-  arrivalRate: 1.2,
+  arrivalRate: 2.4,
   seed: 4242,
-  durationDist: 'uniform',
-  resourceDist: 'uniform',
-  priorityMix: 'flat',
+  durationDist: 'bimodal',
+  resourceDist: 'bimodal',
+  priorityMix: 'skewHigh',
 };

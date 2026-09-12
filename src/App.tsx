@@ -140,7 +140,7 @@ export default function App() {
   };
 
   return (
-    <div className="app">
+    <div className={`app ${drawer ? 'drawer-open' : ''}`}>
       <header className="topbar">
         <div className="brand">Scheduler Show</div>
         <div className="mode-toggle">
@@ -200,6 +200,7 @@ export default function App() {
         <main className="compare-main">
           <CompareLanes
             lanes={compareSnaps}
+            seed={appliedConfig.seed}
             onRemove={(a) =>
               setCompareAlgos((xs) => (xs.length > 1 ? xs.filter((x) => x !== a) : xs))
             }
